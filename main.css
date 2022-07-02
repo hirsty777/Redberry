@@ -1,0 +1,64 @@
+/**/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;800;900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    background-color: rebeccapurple;
+}
+
+
+
+/* Header =============================*/
+header{
+    position: absolute;
+    width: 923px;
+    height: 84px;
+    left: 0px;
+    top: 0px;
+    background: #7025FB;
+}
+.header1{
+    position: relative;
+    left: 60px;
+    top: 25px;
+}
+.header2{
+    position: relative;
+    left: 80px;
+    top: 30px;
+}
+
+/* left side ==========================*/
+.left-rectangle{
+    position: absolute;
+    width: 923px;
+    height: 996px;
+    left: 0px;
+    top: 84px;
+    background: url(images/Landing\ page-\ scrolling\ photo.png);
+}
+
+/* right side =========================*/
+.right-rectangle{
+    position: absolute;
+    width: 997px;
+    height: 1080px;
+    left: 923px;
+    top: 0px;
+    background: #FD5334;
+
+}
+
+
+
+
+
+
