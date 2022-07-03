@@ -287,7 +287,7 @@ header{
     color: #000000;
 }
 
-/*personal information & basic information text*/
+/*personal information & basic information text(same css for 2-3 page)*/
 .P-information{
     position: absolute;
     width: 330px;
@@ -319,7 +319,7 @@ header{
 }
 
 /*personal informations inputs field*/
-.P-information-inputs{
+.Personal-information-inputs{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -330,7 +330,7 @@ header{
     left: 50px;
     top: 481px;
 }
-.P-information-inputs input{
+.Personal-information-inputs input{
     position: relative;
     margin: 0 auto;
     padding: 8px 16px;
@@ -389,4 +389,176 @@ header{
     line-height: 27px;
     text-transform: capitalize;
     color: #FFFFFF;
+}
+
+
+
+
+/*3rd page ============================*/
+/*left rectangle ======================*/
+.page3-left-rectangle{
+    position: absolute;
+    width: 923px;
+    height: 996px;
+    left: 0px;
+    top: 84px;
+    background: url(images/pg3.png);
+}
+.page3-left-rectangle div:nth-child(1){
+    position: absolute;
+    width: 615px;
+    height: 83px;
+    left: 140px;
+    top: 197px;
+
+    font-family: 'Nunito';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 35px;
+    text-transform: uppercase;
+    color: #212529;
+}
+.page3-left-rectangle div:nth-child(2){
+    position: absolute;
+    width: 266px;
+    height: 33px;
+    left: 466px;
+    top: 312px;
+
+    font-family: 'Nunito';
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 33px;
+    text-transform: uppercase;
+    color: #093F68;
+}
+
+
+/* right side =========================*/
+.page3-right-rectangle{
+    position: absolute;
+    width: 997px;
+    height: 1080px;
+    left: 923px;
+    top: 0px;
+    background: #ffffff;
+    
+}
+/*First step is done, continue to finish onboarding*/
+.page3-right-rectangle span{
+    position: relative;
+    top: 30px;
+    left: 50px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    text-transform: capitalize;
+    color: #212529;
+}
+
+/*input field for personal information======*/
+.Experience-information-inputs{
+    position: relative;
+    width: 800px;
+    height: 200px;
+    top: 490px;
+    left: 50px;
+}
+/*knoweladge input */
+.lvl-of-knoweladge::after{
+    position: absolute;
+    content: '';
+    left:365px;
+    top: 16px;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #212529;
+    border-bottom: 2px solid #212529;
+    transform: rotate(45deg);
+    transition: 0.6s;
+}
+.lvl-of-knoweladge.active::after{
+    transform: rotate(225deg);
+}
+.knoweladge{
+    position: absolute;
+    width: 392px;
+    height: 46px;
+    border: none;
+    outline: none;
+    background: #FFFFFF;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+    cursor: pointer;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #212529;
+}
+.K-options{
+    position: absolute;
+    width: 392px;
+    height: auto;
+    margin-top: 50px;
+    display: none;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #000000;
+    z-index: 9999;
+}
+.lvl-of-knoweladge.active .K-options{
+    display: block;
+}
+.K-options div{
+    margin-left: 15px;
+}
+.K-options div:hover{
+    cursor: pointer;
+    font-weight: 600;
+}
+/*character input */
+.character{
+    position: absolute;
+    width: 392px;
+    height: 46px;
+    right: 0;
+    border: none;
+    outline: none;
+    background: #FFFFFF;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+    cursor: pointer;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #212529;
+}
+
+
+/*redberry championship*/
+.redberry-C span{
+    position: absolute;
+    top: 130px;
+    left: 0;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+
 }

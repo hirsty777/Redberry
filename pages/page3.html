@@ -16,26 +16,60 @@
         <img src="/images/Redberry Knight Cup.png" class="header2">
     </header>
 
-    <div class="page2-left-rectangle">
-        <div>“When you see a good move, look for a better one.”</div>
-        <div>-Emanuel Lasker</div>
+    <div class="page3-left-rectangle">
+        <div>“Many have become chess masters;<br> 
+        no one has become the master of chess.”</div>
+        <div>- Siegbert Tarrasch</div>
     </div>
-    <div class="page2-right-rectangle">
+    <div class="page3-right-rectangle">
        <span>First step is done, continue to finish onboarding</span>
         <!--personal information 1 chess experience 2-->
-        <div class="wizard">
-            <div class="frame">
-                <div class="frame1"><i class="bi bi-check-all" style="color:#3BAF77;"></i></div>
-                <div class="frame-line"></div>
-                <div class="frame2" style="color:#212529;;">2</div>
-            </div>
+       <div class="wizard">
+        <div class="frame">
+            <div class="frame1"><i class="bi bi-check-all" style="color:#3BAF77;"></i></div>
+            <div class="frame-line"></div>
+            <div class="frame2" style="color:#212529;;">2</div>
+        </div>
             <span>Personal information</span>
             <span>Chess experience</span>
        </div>
-       
-      
+       <div class="P-information">Chess experience</div>
+       <div class="B-information">This is basic informaton fields</div>
+       <!--input field for personal information-->
+        <div class="Experience-information-inputs">
+            <!--level of knoweladge inputfield-->
+            <div class="lvl-of-knoweladge">
+                <input type="text" class="knoweladge"
+                placeholder="level of knoweladge" readonly>
+                <div class="K-options">
+                    <div onclick="passValue('Beginner')">Beginner</div>
+                    <div onclick="passValue('Intermediate')">Intermediate</div>
+                    <div onclick="passValue('Professional')">Professional</div>
+                </div>
+            </div>
+            <!--choose your character-->
+            <div class="choose-your-character">
+                <input type="text" class="character"
+                placeholder="Choose your character" readonly>    
+            </div>
+            <!--Have you participated in the Redberry Championship? *-->
+            <div class="redberry-C">
+                <span>Have you participated in the Redberry Championship?</span>
+                <input type="radio" id="yes" value="yes" name="answer">
+                <label for="yes">yes</label>
+                <input type="radio" id="no" value="no" name="answer">
+                <label for="no">no</label>
+            </div>
+        </div>
+
+        <a href="/pages/page2.html">
+        <button class="back-BTN">Back</button>
+        </a>
+        <a href="/pages/page3.html">
+        <button class="next-BTN">Next<i class="bi bi-arrow-right-circle"></i></button>
+        </a>
     </div>
 
-    <script src="main.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>
