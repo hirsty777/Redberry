@@ -34,18 +34,24 @@
        </div>
        <div class="P-information">Personal Information</div>
        <div class="B-information">This is basic informaton fields</div>
+       <!--error when inputs not valid-->
+       <div class="error">
+            <span id="invalid"></span>
+            <span onclick="hideErrorPanel()"><i class="bi bi-x-lg"></i></span>
+            <span id="correct"></span>
+       </div>
        <!--input field for personal information-->
        <div class="Personal-information-inputs">
-            <input type="text" placeholder="Name">
-            <input type="text" placeholder="Email address ">
-            <input type="text" placeholder="Phone number ">
-            <input type="text" placeholder="Date of birth ">
+            <input type="text" placeholder="Name"  id="p-name">
+            <input type="text" placeholder="Email address" id="p-email">
+            <input type="text" placeholder="Phone number" id="p-phone">
+            <input type="text" placeholder="Date of birth" id="p-date">
        </div>
        <a href="/index.html">
        <button class="back-BTN">Back</button>
        </a>
        <a href="/pages/page3.html">
-       <button class="next-BTN">Next<i class="bi bi-arrow-right-circle"></i></button>
+       <button class="next-BTN" type="submit">Next<i class="bi bi-arrow-right-circle"></i></button>
        </a>
     </div>
 
