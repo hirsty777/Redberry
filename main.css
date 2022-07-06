@@ -410,13 +410,37 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-appearance: none;
     appearance: none; 
 }
-/**/
+/*validate icons*/
 #nameicon{
     color: green;
     position: absolute;
     top: 0px;
     right: 10px;
     top: 13px;
+    display: none;
+}
+#emailicon{
+    color: green;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    top: 100px;
+    display: none;
+}
+#phoneicon{
+    color: green;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    top:185px;
+    display: none;
+}
+#dateicon{
+    color: green;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    top:275px;
     display: none;
 }
 
@@ -579,6 +603,7 @@ input[type=number]::-webkit-outer-spin-button {
     width: 392px;
     height: auto;
     margin-top: 50px;
+    background-color: #ffffff;
     display: none;
 
     font-family: 'Open Sans';
@@ -619,17 +644,91 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 150%;
     color: #212529;
 }
-
-/*redberry championship*/
-.redberry-C span{
+.choose-your-character::after{
     position: absolute;
-    top: 130px;
-    left: 0;
+    content: '';
+    left:765px;
+    top: 16px;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #212529;
+    border-bottom: 2px solid #212529;
+    transform: rotate(45deg);
+    transition: 0.6s;
+}
+.choose-your-character.active::after{
+    transform: rotate(225deg);
+}
+/*dropdown for character*/
+.C-options{
+    position: absolute;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    left: 400px;
+    top: 55px;
+    width: 390px;
+    height: 420px;
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+    display: none;
+}
+.choose-your-character.active .C-options{
+    display: flex;
+}
+.C-options div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    width: 100%;
+    height: 72px;
+    cursor: pointer;
 
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 150%;
+    color: #212529;
+}
+.C-options img{
+    width: 100px;
+    height: 72px;
+}
+
+
+
+
+/*redberry championship*/
+.redberry-C{
+    width: 750px;
+    height: 60px;
+    position: relative;
+    left: 0px;
+    top: 100px;
+}
+.redberry-C span{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%
+}
+.redberry-C input,.redberry-C label{
+    position: relative;
+    margin-top: 50px;
+    width: 30px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #212529;
 
 }
