@@ -3,7 +3,12 @@ const pemail=document.getElementById('p-email');
 const pphone=document.getElementById('p-phone');
 const pdate=document.getElementById('p-date');
 const nextBTN=document.querySelector('.next-BTN');
+const doneBTN=document.querySelector('.done-BTN');
 const error=document.querySelector('.error');
+//page 3 input fields
+const chooseCharacter=document.querySelector('.character');
+const chooseKnoweladge=document.querySelector('.knoweladge');
+
 
 const invalid=document.getElementById('invalid');
 const correct=document.getElementById('correct');
@@ -18,7 +23,9 @@ let dateIcon=document.getElementById('dateicon');
 
 
 //page 2 personafl information validation==============
-nextBTN.addEventListener('click',(e)=>{
+//make validation when next BTN is clicked
+if(nextBTN){
+    nextBTN.addEventListener('click',(e)=>{
 
     //call date of birth validation function
     dateValidation(e);
@@ -31,8 +38,10 @@ nextBTN.addEventListener('click',(e)=>{
 
     //call  name validation function
     nameValidation(e);
-    
-});
+        
+    });
+}
+
 
 
 //validate name  =====
@@ -157,38 +166,79 @@ function hideErrorPanel(){
 
 
 //page 3 lvl of knoweladge and character choose
-
 //select knoweladge dropdown and pass value
-function passValue(info){
-    document.querySelector('.knoweladge').value=info;
+function passValueKnoweladge(infoKnoweladge){
+    chooseKnoweladge.value=infoKnoweladge;
 };
 
 //hide show dropdown for knoweladge
 const  KoptionsDropdown=document.querySelector('.lvl-of-knoweladge');
-KoptionsDropdown.onclick=()=>{
+if(KoptionsDropdown){
+    KoptionsDropdown.onclick=()=>{
     KoptionsDropdown.classList.toggle('active');
+    };
 };
+
 
 //hide show dropdown for character
 const  CoptionsDropdown=document.querySelector('.choose-your-character');
-CoptionsDropdown.onclick=()=>{
+if(CoptionsDropdown){
+    CoptionsDropdown.onclick=()=>{
     CoptionsDropdown.classList.toggle('active');
+    };
 };
+
 
 //fetch data for characters and deploy on body
 const Coptions=document.querySelector('.C-options');
-var counter=0;
 fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
 .then(res=>res.json())
 .then(data=>{   
-    //console.log(data[1].image)
-    Coptions.innerHTML=`
-    <div>${data[0].name}<img src="https://chess-tournament-api.devtest.ge${data[0].image}"></div>
-    <div>${data[1].name}<img src="https://chess-tournament-api.devtest.ge${data[1].image}"></div>
-    <div>${data[2].name}<img src="https://chess-tournament-api.devtest.ge${data[2].image}"></div>
-    <div>${data[3].name}<img src="https://chess-tournament-api.devtest.ge${data[3].image}"></div>`
+    data.forEach((n)=>{
+    Coptions.innerHTML+=`
+    <div onclick="passValueCharacter('${n.name}')">${n.name}<img src="https://chess-tournament-api.devtest.ge${n.image}"></div>
+    `});
+}); 
 
+//select character dropdown and pass value
+function passValueCharacter(infoCharacter){
+    chooseCharacter.value=infoCharacter;
+};
+
+//making sure knoweladge and character are choosen
+//collect input values
+if(doneBTN){
+doneBTN.addEventListener('click',(e)=>{
+    //making sure knoweladge and character are choosen
+    page4Validation(e);
+
+    //collect information
+    
 });
+};
 
-
-
+//making sure knoweladge  character and answer  are choosen
+function page4Validation(e){
+    //check if character is selected
+    if(chooseCharacter.value==''){
+        console.log('empty');
+        e.preventDefault();
+    }else{
+        console.log(chooseCharacter.value);
+    };
+    //check if knoweladge lvl is selected
+    if(chooseKnoweladge.value==''){
+        console.log('empty1');
+        e.preventDefault();
+    }else{
+        console.log(chooseKnoweladge.value);
+    };
+    //check if answer is selected
+    let getselectedValue=document.querySelector('input[name="answer"]:checked');
+    if(getselectedValue!=null){
+        console.log(getselectedValue.value);
+    }else{
+        console.log('not selelcted')
+        e.preventDefault();
+    };
+};

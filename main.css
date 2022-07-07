@@ -55,8 +55,7 @@ header{
     height: 1080px;
     left: 923px;
     top: 0px;
-    background: #FD5334;
-    
+    background: #FD5334;  
 }
 /*text=>chess says */
 .page1-right-rectangle div:nth-child(1){
@@ -700,14 +699,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
-
 /*redberry championship*/
 .redberry-C{
     width: 750px;
     height: 60px;
     position: relative;
     left: 0px;
-    top: 100px;
+    top: 140px;
 }
 .redberry-C span{
     position: absolute;
@@ -722,13 +720,84 @@ input[type=number]::-webkit-outer-spin-button {
 .redberry-C input,.redberry-C label{
     position: relative;
     margin-top: 50px;
-    width: 30px;
-
+    width: 20px;
+    height: 20px;
+  
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     color: #212529;
+}
+.redberry-C label{
+    margin-right: 50px;
+}
 
+/*nextBTN*/
+.done-BTN{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    width: 128px;
+    height: 53px;
+    right: 175px;
+    top: 873px;
+    background: #212529;
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+
+
+
+
+/*page 4 =============================*/
+/*left side*/
+.page4-left-rectangle{
+    position: absolute;
+    width: 923px;
+    height: 996px;
+    left: 0px;
+    top: 84px;
+    background: url(images/page4Background.png);
+}
+/*right side*/
+.page4-right-rectangle{
+    position: absolute;
+    width: 997px;
+    height: 1080px;
+    left: 923px;
+    top: 0px;
+    background: #ffffff;  
+}
+
+.onboarding-completed{
+    position: relative;
+    top: 416px;
+    left: 278px;
+    width: 410px;
+    height: 260px;
+}
+.onboarding-completed span{
+    position: absolute;
+    bottom: 0px;
+    bottom: 2px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 150%;
+    color: #000000;
 }
