@@ -9,7 +9,6 @@ const error=document.querySelector('.error');
 const chooseCharacter=document.querySelector('.character');
 const chooseKnoweladge=document.querySelector('.knoweladge');
 
-
 const invalid=document.getElementById('invalid');
 const correct=document.getElementById('correct');
 
@@ -18,7 +17,6 @@ let nameIcon=document.getElementById('nameicon');
 let emailIcon=document.getElementById('emailicon');
 let phoneIcon=document.getElementById('phoneicon');
 let dateIcon=document.getElementById('dateicon');
-
 
 
 
@@ -38,10 +36,9 @@ if(nextBTN){
 
     //call  name validation function
     nameValidation(e);
-        
-    });
+    
+ });
 }
-
 
 
 //validate name  =====
@@ -68,6 +65,8 @@ function nameValidation(e){
         nameIcon.style.display='block';
         //change color to black if validate
         pname.style.color='black';
+        //save information to local storage
+        localStorage.setItem('name',pname.value);
     };
 
 };
@@ -97,6 +96,8 @@ function emailValidation(e){
         emailIcon.style.display='block';
         //change color to black if validate
         pemail.style.color='black';
+        //save information to local storage
+        localStorage.setItem('email',pemail.value);
     };
 
 };
@@ -125,6 +126,8 @@ function phoneValidation(e){
         phoneIcon.style.display='block';
         //change color to black if validate
         pphone.style.color='black';
+        //save information to local storage
+        localStorage.setItem('phone',pphone.value);
     };
 
 };
@@ -154,6 +157,8 @@ function dateValidation(e){
     dateIcon.style.display='block';
     //change color to black if validate
     pdate.style.color='black';
+    //save information to local storage
+    localStorage.setItem('date_of_birth"',pdate.value);
     };
 };
 
@@ -193,16 +198,20 @@ if(CoptionsDropdown){
 const Coptions=document.querySelector('.C-options');
 fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
 .then(res=>res.json())
-.then(data=>{   
+.then(data=>{ 
     data.forEach((n)=>{
     Coptions.innerHTML+=`
-    <div onclick="passValueCharacter('${n.name}')">${n.name}<img src="https://chess-tournament-api.devtest.ge${n.image}"></div>
+    <div onclick="passValueCharacter('${n.name}',${n.id})">
+    ${n.name}<img src="https://chess-tournament-api.devtest.ge${n.image}">
+    </div>
     `});
 }); 
 
 //select character dropdown and pass value
-function passValueCharacter(infoCharacter){
+function passValueCharacter(infoCharacter,id){
     chooseCharacter.value=infoCharacter;
+    //save information to local storage
+    localStorage.setItem('character_id',id);
 };
 
 //making sure knoweladge and character are choosen
@@ -211,14 +220,21 @@ if(doneBTN){
 doneBTN.addEventListener('click',(e)=>{
     //making sure knoweladge and character are choosen
     page4Validation(e);
-
-    //collect information
-    
 });
 };
 
 //making sure knoweladge  character and answer  are choosen
 function page4Validation(e){
+
+    //check if knoweladge lvl is selected
+    if(chooseKnoweladge.value==''){
+        console.log('empty1');
+        e.preventDefault();
+    }else{
+        console.log(chooseKnoweladge.value);
+        //save information to local storage
+        localStorage.setItem('experience_level',chooseKnoweladge.value);
+    };
     //check if character is selected
     if(chooseCharacter.value==''){
         console.log('empty');
@@ -226,17 +242,15 @@ function page4Validation(e){
     }else{
         console.log(chooseCharacter.value);
     };
-    //check if knoweladge lvl is selected
-    if(chooseKnoweladge.value==''){
-        console.log('empty1');
-        e.preventDefault();
-    }else{
-        console.log(chooseKnoweladge.value);
-    };
     //check if answer is selected
     let getselectedValue=document.querySelector('input[name="answer"]:checked');
     if(getselectedValue!=null){
-        console.log(getselectedValue.value);
+        //save information to local storage
+        if(getselectedValue.value=='yes'){
+        localStorage.setItem('already_participated',true);
+        }else{
+        localStorage.setItem('already_participated',false);
+        }
     }else{
         console.log('not selelcted')
         e.preventDefault();
