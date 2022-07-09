@@ -20,6 +20,8 @@ let dateIcon=document.getElementById('dateicon');
 
 
 
+
+
 //page 2 personafl information validation==============
 //make validation when next BTN is clicked
 if(nextBTN){
@@ -158,7 +160,7 @@ function dateValidation(e){
     //change color to black if validate
     pdate.style.color='black';
     //save information to local storage
-    localStorage.setItem('date_of_birth"',pdate.value);
+    localStorage.setItem('date',pdate.value);
     };
 };
 
@@ -221,6 +223,17 @@ doneBTN.addEventListener('click',(e)=>{
     //making sure knoweladge and character are choosen
     page4Validation(e);
 });
+}else{
+    const gatherInformation={
+        'name': localStorage.getItem('name'),
+        'email': localStorage.getItem('email'),
+        'phone': localStorage.getItem('phone'),
+        'date_of_birth': localStorage.getItem('date'),
+        'experience_level': localStorage.getItem('experience_level'),
+        'already_participated': localStorage.getItem('already_participated'),
+        'character_id': localStorage.getItem('character_id'),
+    }
+    console.log(gatherInformation)
 };
 
 //making sure knoweladge  character and answer  are choosen
@@ -256,3 +269,12 @@ function page4Validation(e){
         e.preventDefault();
     };
 };
+
+
+
+/*giving input fields values if they where entered before
+(in case page was refreshd)*/
+pname.value=localStorage.getItem('name');
+pemail.value=localStorage.getItem('email');
+pphone.value=localStorage.getItem('phone');
+pdate.value=localStorage.getItem('date');
