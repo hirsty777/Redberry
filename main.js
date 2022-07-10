@@ -1,4 +1,4 @@
-//page 2 
+//page 2 p in start of variables stands for Personal(information)
 const pname=document.getElementById('p-name');
 const pemail=document.getElementById('p-email');
 const pphone=document.getElementById('p-phone');
@@ -6,6 +6,12 @@ const pdate=document.getElementById('p-date');
 const nextBTN=document.querySelector('.next-BTN');
 const doneBTN=document.querySelector('.done-BTN');
 const error=document.querySelector('.error');
+
+//personal information inputs labels (used as placeholders)
+const placeholderName=document.querySelector('.p-name');
+const placeholderEmail=document.querySelector('.p-email');
+const placeholderPhone=document.querySelector('.p-phone');
+const placeholderDate=document.querySelector('.p-date');
 
 const invalid=document.getElementById('invalid');
 const correct=document.getElementById('correct');
@@ -21,10 +27,45 @@ const chooseCharacter=document.querySelector('.character');
 const chooseKnoweladge=document.querySelector('.knoweladge');
 
 
+//page2 input fields placeholders sho and hide 
+if(document.URL.includes('pages/page2.html')){
+    //1================name========================
+    pname.addEventListener('focus',function(){
+        placeholderName.style.display='none';
+    });
+    pname.addEventListener('blur',function(){
+        if(pname.value.trim()=='')
+        placeholderName.style.display='block';
+    });
+    //2===============email========================
+    pemail.addEventListener('focus',function(){
+        placeholderEmail.style.display='none';
+    });
+    pemail.addEventListener('blur',function(){
+        if(pemail.value.trim()=='')
+        placeholderEmail.style.display='block';
+    });
+    //3==============phone=========================
+    pphone.addEventListener('focus',function(){
+        placeholderPhone.style.display='none';
+    });
+    pphone.addEventListener('blur',function(){
+        if(pphone.value.trim()=='')
+        placeholderPhone.style.display='block';
+    });
+    //4=============date==========================
+    pdate.addEventListener('focus',function(){
+        placeholderDate.style.display='none';
+    });
+    pdate.addEventListener('blur',function(){
+        if(pdate.value.trim()=='')
+        placeholderDate.style.display='block';
+    });
 
+}
 
 //page 2 personafl information validation==============
-//check for input validation on keyup
+//check for input text validation on keyup
 //NAME check and save on local storage 
 if(document.URL.includes('pages/page2.html')){
 pname.addEventListener('keyup',function(){
@@ -260,18 +301,23 @@ if(CoptionsDropdown){
 
 //fetch data for characters and deploy on body
 const Coptions=document.querySelector('.C-options');
-fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
-.then(res=>res.json())
-.then(data=>{ 
-    if(Coptions){
-    data.forEach((n)=>{
-    Coptions.innerHTML+=`
-    <div onclick="passValueCharacter('${n.name}',${n.id})">
-    ${n.name}<img src="https://chess-tournament-api.devtest.ge${n.image}">
-    </div>
-    `});
-    }
-}); 
+async function fetchCaracters(){
+    await fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
+    .then(res=>res.json())
+    .then(data=>{ 
+        if(Coptions){
+        data.forEach((n)=>{
+        Coptions.innerHTML+=`
+        <div onclick="passValueCharacter('${n.name}',${n.id})">
+        ${n.name}<img src="https://chess-tournament-api.devtest.ge${n.image}">
+        </div>
+        `});
+        }
+    }); 
+};fetchCaracters();
+
+
+
 
 //select character dropdown and pass value
 function passValueCharacter(infoCharacter,id){
@@ -282,20 +328,33 @@ function passValueCharacter(infoCharacter,id){
 
 //making sure knoweladge and character are choosen and if they are selected fetch(post it)
 if(doneBTN){
-doneBTN.addEventListener('click',(e)=>{
+doneBTN.addEventListener('click',async (e) => {
 
-    //making sure knoweladge and character are choosen
+    //making sure knoweladge and character are choosen 
     page3Validation(e);
     
-    //cant save answer as boolean in localstore so i rework it before passin to fetch
+
+    //reworking som inforamtion before giving it to fetch
+    //cant save answer as boolean in localstore so i rework it before giving to fetch
     if(localStorage.getItem('already_participated')=='true'){
         var answerParse=true;
-    }else{var answerParse=false;};
+    }else{var answerParse=false;
+    };
 
-    //if  knoweladge  character and answer of question are choosen fetch(post it)
+    //level of knoweladge rework it before giving to fetch
+    if(localStorage.getItem('experience_level')=='Beginner'){
+        var experienceLevel='beginner';
+    }else if(localStorage.getItem('experience_level')=='Intermediate'){
+        var experienceLevel='normal';
+    }else{
+    var experienceLevel='professional';
+    ;}
+
+
     let getselectedValue=document.querySelector('input[name="answer"]:checked');
+    //if  knoweladge  character and answer of question are choosen fetch(post it)
     if(chooseKnoweladge.value!='' && chooseCharacter.value!='' && getselectedValue!=null){
-        fetch('https://chess-tournament-api.devtest.ge/api/register',{
+    await fetch('https://chess-tournament-api.devtest.ge/api/register',{
         method:'POST',
         headers:{
             'accept': 'application/json',
@@ -306,18 +365,18 @@ doneBTN.addEventListener('click',(e)=>{
             email: localStorage.getItem('email'),
             phone: localStorage.getItem('phone'),
             date_of_birth: localStorage.getItem('date'),
-            experience_level:'beginner',
-            already_participated:answerParse,
+            experience_level: experienceLevel,
+            already_participated: answerParse,
             character_id: localStorage.getItem('character_id')
-        })
-
+    })
     }).then((res) =>{
         return res;
     })
-    .then(data => console.log(data))
-    .catch(error=>console.log('ERROR'));
+    .then(data =>{
+      console.log(data);
+    })
+    .catch(error=>console.log(error));
     };
-
 });
 };
 
@@ -325,18 +384,18 @@ doneBTN.addEventListener('click',(e)=>{
 //making sure knoweladge  character and answer  are choosen
 function page3Validation(e){
 
-    //check if knoweladge lvl is selected
+    //check if knoweladge lvl is selected========
     if(chooseKnoweladge.value==''){
         e.preventDefault();
     }else{
         //save information to local storage
         localStorage.setItem('experience_level',chooseKnoweladge.value);
     };
-    //check if character is selected
+    //check if character is selected============
     if(chooseCharacter.value==''){
         e.preventDefault();
     };
-    //check if answer is selected
+    //check if answer is selected===============
     let getselectedValue=document.querySelector('input[name="answer"]:checked');
     if(getselectedValue!=null){
         //save information about Championship participation to local storage
@@ -355,10 +414,26 @@ function page3Validation(e){
 /*giving input fields values if they where entered before
 (in case page was refreshd) page2*/
 if(document.URL.includes('pages/page2.html')){
+    //get value from localstorage if ther is some and if ther is hide placeholder for inputs
     pname.value=localStorage.getItem('name');
+    if(pname.value.trim()!=''){
+       placeholderName.style.display='none';
+    };
+
     pemail.value=localStorage.getItem('email');
+    if(pemail.value.trim()!=''){
+        placeholderEmail.style.display='none';
+     };
+
     pphone.value=localStorage.getItem('phone');
+    if(pphone.value.trim()!=''){
+        placeholderPhone.style.display='none';
+     };
+
     pdate.value=localStorage.getItem('date');
+    if(pdate.value.trim()!=''){
+        placeholderDate.style.display='none';
+     };
 };
 
 

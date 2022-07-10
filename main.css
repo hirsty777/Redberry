@@ -129,7 +129,8 @@ header{
     color: #FFFFFF;
 }
 .page1-right-rectangle button:hover{
-    outline: 4px solid #C2A5F9CC;
+    border: 4px solid rgba(194, 165, 249, 0.8);
+    border-radius: 8px;
 }
 
 
@@ -400,8 +401,67 @@ header{
     line-height: 150%;
     color: #212529;
 }
+/*text in input fields(insted of placeholders)*/
+.p-name{
+    position: absolute;
+    top: 7px;
+    left: 15px;
 
-/*hiding arrows from inputfield*/
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #212529;
+}
+.p-email{
+    position: absolute;
+    top: 94px;
+    left: 15px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #212529;
+}
+.p-phone{
+    position: absolute;
+    top: 181px;
+    left: 15px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #212529;
+}
+.p-date{
+    position: absolute;
+    top: 268px;
+    left: 15px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #212529;
+}
+.p-name::after,.p-email::after,.p-phone::after,.p-date::after{
+    position: absolute;
+    content: '*';
+    margin-top: 2px;
+    margin-left: 5px;
+    color: red;
+}
+
+
+
+
+/*hiding arrows from number inputfield */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
@@ -461,6 +521,11 @@ input[type=number]::-webkit-outer-spin-button {
     color: #212529;
     cursor: pointer;
 }
+.back-BTN:hover{
+    background: rgba(185, 180, 196, 0.3);
+    border: 1px solid rgba(194, 165, 249, 0.8);
+    border-radius: 8px;
+}
 .next-BTN{
     position: absolute;
     display: flex;
@@ -483,6 +548,10 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 27px;
     text-transform: capitalize;
     color: #FFFFFF;
+}
+.next-BTN:hover{
+    border: 4px solid rgba(194, 165, 249, 0.8);
+    border-radius: 8px;
 }
 
 
@@ -757,6 +826,10 @@ input[type=number]::-webkit-outer-spin-button {
     text-transform: capitalize;
     color: #FFFFFF;
 }
+.done-BTN:hover{
+    border: 4px solid rgba(194, 165, 249, 0.8);
+    border-radius: 8px;
+}
 
 
 
@@ -799,4 +872,11 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 36px;
     line-height: 150%;
     color: #000000;
+}
+.onboarding-completed img{
+    position: absolute;
+    top: 5px;
+    left: 110px;
+    width: 183px;
+    height: 190px;
 }
