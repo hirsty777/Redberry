@@ -279,6 +279,8 @@ function hideErrorPanel(){
 //select knoweladge dropdown and pass value
 function passValueKnoweladge(infoKnoweladge){
     chooseKnoweladge.value=infoKnoweladge;
+     //hide placeholder label for lvl of knoweladge when it choosen
+    document.querySelector('.knoweladgeLabel').style.display='none';
 };
 
 //hide show dropdown for knoweladge
@@ -324,6 +326,8 @@ function passValueCharacter(infoCharacter,id){
     chooseCharacter.value=infoCharacter;
     //save information to local storage
     localStorage.setItem('character_id',id);
+    //hide placeholder label for character when it choosen
+    document.querySelector('.characterLabel').style.display='none';
 };
 
 //making sure knoweladge and character are choosen and if they are selected fetch(post it)
@@ -350,7 +354,7 @@ doneBTN.addEventListener('click',async (e) => {
     var experienceLevel='professional';
     ;}
 
-
+    //fetch 
     let getselectedValue=document.querySelector('input[name="answer"]:checked');
     //if  knoweladge  character and answer of question are choosen fetch(post it)
     if(chooseKnoweladge.value!='' && chooseCharacter.value!='' && getselectedValue!=null){
@@ -435,5 +439,9 @@ if(document.URL.includes('pages/page2.html')){
         placeholderDate.style.display='none';
      };
 };
+
+
+
+
 
 

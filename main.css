@@ -10,8 +10,8 @@
 
 body{
     position: relative;
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height:100vh;
 }
 
 
@@ -653,7 +653,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: 46px;
     border: none;
     outline: none;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
     border-radius: 4px;
     cursor: pointer;
@@ -665,6 +665,47 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 150%;
     color: #212529;
 }
+/*page 3 knoweladge label */
+.knoweladgeLabel{
+    position: absolute;
+    top: 5px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #212529;
+}
+.knoweladgeLabel::after{
+    position: absolute;
+    content: '*';
+    color: red;
+    top: 3px;
+    margin-left: 15px;
+}
+/*page 3 character label */
+.characterLabel{
+    position: absolute;
+    left: 410px;
+    top: 5px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #212529;
+}
+.characterLabel::after{
+    position: absolute;
+    content: '*';
+    color: red;
+    top: 3px;
+    margin-left: 15px;
+}
+
+/*knoweladge options*/
 .K-options{
     position: absolute;
     width: 392px;
@@ -699,7 +740,7 @@ input[type=number]::-webkit-outer-spin-button {
     right: 0;
     border: none;
     outline: none;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
     border-radius: 4px;
     cursor: pointer;
