@@ -13,7 +13,7 @@ body{
     width: 100%;
     height: 100%;
     overflow: hidden;
-}
+} 
 
 
 /* Header same for all pages============*/
@@ -57,7 +57,7 @@ header{
     top: 0px;
     background: #FD5334;  
 }
-/*text=>chess says */
+/*text chess says */
 .page1-right-rectangle div:nth-child(1){
     position: absolute;
     left: 80px;
@@ -73,7 +73,7 @@ header{
     text-transform: uppercase;
     color: #FFFFFF;
 }
-/*text=>a lot about */
+/*text  a lot about */
 .page1-right-rectangle div:nth-child(2){
     position: absolute;
     top: 308px;
@@ -87,7 +87,7 @@ header{
     text-transform: uppercase;
     color: #212529;
 }
-/*text=>who we are*/
+/*text who we are*/
 .page1-right-rectangle div:nth-child(3){
     position: absolute;
     width: 570px;

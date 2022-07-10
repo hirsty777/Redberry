@@ -441,6 +441,10 @@ if(document.URL.includes('pages/page2.html')){
 };
 
 
+//if user is on page 4 clear local storage
+if(document.URL.includes('pages/page4.html')){
+        localStorage.clear();
+};
 
 
 
