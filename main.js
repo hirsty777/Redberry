@@ -1,3 +1,4 @@
+//page 2 
 const pname=document.getElementById('p-name');
 const pemail=document.getElementById('p-email');
 const pphone=document.getElementById('p-phone');
@@ -5,9 +6,6 @@ const pdate=document.getElementById('p-date');
 const nextBTN=document.querySelector('.next-BTN');
 const doneBTN=document.querySelector('.done-BTN');
 const error=document.querySelector('.error');
-//page 3 input fields
-const chooseCharacter=document.querySelector('.character');
-const chooseKnoweladge=document.querySelector('.knoweladge');
 
 const invalid=document.getElementById('invalid');
 const correct=document.getElementById('correct');
@@ -18,14 +16,90 @@ let emailIcon=document.getElementById('emailicon');
 let phoneIcon=document.getElementById('phoneicon');
 let dateIcon=document.getElementById('dateicon');
 
+//page 3 input fields
+const chooseCharacter=document.querySelector('.character');
+const chooseKnoweladge=document.querySelector('.knoweladge');
 
 
 
 
 //page 2 personafl information validation==============
+//check for input validation on keyup
+//NAME check and save on local storage 
+if(document.URL.includes('pages/page2.html')){
+pname.addEventListener('keyup',function(){
+    //save information to local storage
+    localStorage.setItem('name',pname.value);
+
+    //show hide validate icon on keyup
+    if(pname.value.length<2 || pname.value.trim()==""){
+        //hide validate icon 
+        nameIcon.style.display='none';
+    }else{
+        //display validate icon 
+        nameIcon.style.display='block';
+        //change color to black if validate
+        pname.style.color='black';
+    };
+});
+
+//EMAIL check and save on local storage 
+pemail.addEventListener('keyup',function(){
+    //save information to local storage
+    localStorage.setItem('email',pemail.value);
+
+    let mailformat =/^([A-Za-z0-9_\-\.])+\@redberry.ge/;
+    //show hide validate icon on keyup
+    if(!pemail.value.match(mailformat)){
+        //hide validate icon 
+        emailIcon.style.display='none';
+    }else{
+        //display validate icon 
+        emailIcon.style.display='block';
+        //change color to black if validate
+        pemail.style.color='black';
+    }
+});
+
+//PHONE check and save on local storage 
+pphone.addEventListener('keyup',function(){
+    //save information to local storage
+    localStorage.setItem('phone',pphone.value);
+
+    if(pphone.value.length!==9 || pphone.value.trim()==""){
+        //hide validate icon 
+        phoneIcon.style.display='none';
+    }else{
+        //display validate icon 
+        phoneIcon.style.display='block';
+        //change color to black if validate
+        pphone.style.color='black';
+    };
+});
+
+//DATE check and save on local storage 
+pdate.addEventListener('keyup',function(){
+    //save information to local storage
+    localStorage.setItem('date',pdate.value);
+
+    let dateval =("([0-9]{2})\/([0-9]{2})\/([0-9]{4})");
+    if(!pdate.value.match(dateval)){
+        //hide validate icon 
+        dateIcon.style.display='none'; 
+    }else{
+        //display validate icon 
+        dateIcon.style.display='block';
+        //change color to black if validate
+        pdate.style.color='black';
+    }
+});
+};
+
+
 //make validation when next BTN is clicked
 if(nextBTN){
     nextBTN.addEventListener('click',(e)=>{
+
 
     //call date of birth validation function
     dateValidation(e);
@@ -40,8 +114,7 @@ if(nextBTN){
     nameValidation(e);
     
  });
-}
-
+};
 
 //validate name  =====
 function nameValidation(e){
@@ -56,21 +129,14 @@ function nameValidation(e){
         11.0498 13.9286C11.0498 14.209 10.9399 14.4783 10.7436 14.6786C10.5473 14.8789 10.2804 14.9943 10 15Z" fill="#DC3545"/></svg>
         Invalid name`;
         correct.innerHTML='Name must be more then 2 letters';
-        //hide validate icon 
-        nameIcon.style.display='none';
         //change color to red if not valid
         pname.style.color='red';
         e.preventDefault(); 
     }
     else{
-        //display validate icon 
-        nameIcon.style.display='block';
         //change color to black if validate
         pname.style.color='black';
-        //save information to local storage
-        localStorage.setItem('name',pname.value);
     };
-
 };
 
 //validate email =====
@@ -87,8 +153,6 @@ function emailValidation(e){
         11.0498 13.9286C11.0498 14.209 10.9399 14.4783 10.7436 14.6786C10.5473 14.8789 10.2804 14.9943 10 15Z" fill="#DC3545"/></svg>
         Invalid email`;
         correct.innerHTML='Please enter valid email address';
-        //hide validate icon 
-        emailIcon.style.display='none';
         //change color to red if not valid
         pemail.style.color='red';
         e.preventDefault(); 
@@ -98,8 +162,6 @@ function emailValidation(e){
         emailIcon.style.display='block';
         //change color to black if validate
         pemail.style.color='black';
-        //save information to local storage
-        localStorage.setItem('email',pemail.value);
     };
 
 };
@@ -128,8 +190,6 @@ function phoneValidation(e){
         phoneIcon.style.display='block';
         //change color to black if validate
         pphone.style.color='black';
-        //save information to local storage
-        localStorage.setItem('phone',pphone.value);
     };
 
 };
@@ -159,16 +219,18 @@ function dateValidation(e){
     dateIcon.style.display='block';
     //change color to black if validate
     pdate.style.color='black';
-    //save information to local storage
-    localStorage.setItem('date',pdate.value);
     };
 };
+
 
 
 //hide error panel when x is clicked
 function hideErrorPanel(){  
     error.classList.remove('active');
 };
+
+
+
 
 
 
@@ -201,12 +263,14 @@ const Coptions=document.querySelector('.C-options');
 fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
 .then(res=>res.json())
 .then(data=>{ 
+    if(Coptions){
     data.forEach((n)=>{
     Coptions.innerHTML+=`
     <div onclick="passValueCharacter('${n.name}',${n.id})">
     ${n.name}<img src="https://chess-tournament-api.devtest.ge${n.image}">
     </div>
     `});
+    }
 }); 
 
 //select character dropdown and pass value
@@ -216,56 +280,72 @@ function passValueCharacter(infoCharacter,id){
     localStorage.setItem('character_id',id);
 };
 
-//making sure knoweladge and character are choosen
-//collect input values
+//making sure knoweladge and character are choosen and if they are selected fetch(post it)
 if(doneBTN){
 doneBTN.addEventListener('click',(e)=>{
+
     //making sure knoweladge and character are choosen
-    page4Validation(e);
+    page3Validation(e);
+    
+    //cant save answer as boolean in localstore so i rework it before passin to fetch
+    if(localStorage.getItem('already_participated')=='true'){
+        var answerParse=true;
+    }else{var answerParse=false;};
+
+    //if  knoweladge  character and answer of question are choosen fetch(post it)
+    let getselectedValue=document.querySelector('input[name="answer"]:checked');
+    if(chooseKnoweladge.value!='' && chooseCharacter.value!='' && getselectedValue!=null){
+        fetch('https://chess-tournament-api.devtest.ge/api/register',{
+        method:'POST',
+        headers:{
+            'accept': 'application/json',
+            'content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+            name: localStorage.getItem('name'),
+            email: localStorage.getItem('email'),
+            phone: localStorage.getItem('phone'),
+            date_of_birth: localStorage.getItem('date'),
+            experience_level:'beginner',
+            already_participated:answerParse,
+            character_id: localStorage.getItem('character_id')
+        })
+
+    }).then((res) =>{
+        return res;
+    })
+    .then(data => console.log(data))
+    .catch(error=>console.log('ERROR'));
+    };
+
 });
-}else{
-    const gatherInformation={
-        'name': localStorage.getItem('name'),
-        'email': localStorage.getItem('email'),
-        'phone': localStorage.getItem('phone'),
-        'date_of_birth': localStorage.getItem('date'),
-        'experience_level': localStorage.getItem('experience_level'),
-        'already_participated': localStorage.getItem('already_participated'),
-        'character_id': localStorage.getItem('character_id'),
-    }
-    console.log(gatherInformation)
 };
 
+
 //making sure knoweladge  character and answer  are choosen
-function page4Validation(e){
+function page3Validation(e){
 
     //check if knoweladge lvl is selected
     if(chooseKnoweladge.value==''){
-        console.log('empty1');
         e.preventDefault();
     }else{
-        console.log(chooseKnoweladge.value);
         //save information to local storage
         localStorage.setItem('experience_level',chooseKnoweladge.value);
     };
     //check if character is selected
     if(chooseCharacter.value==''){
-        console.log('empty');
         e.preventDefault();
-    }else{
-        console.log(chooseCharacter.value);
     };
     //check if answer is selected
     let getselectedValue=document.querySelector('input[name="answer"]:checked');
     if(getselectedValue!=null){
-        //save information to local storage
+        //save information about Championship participation to local storage
         if(getselectedValue.value=='yes'){
         localStorage.setItem('already_participated',true);
         }else{
         localStorage.setItem('already_participated',false);
         }
     }else{
-        console.log('not selelcted')
         e.preventDefault();
     };
 };
@@ -273,8 +353,12 @@ function page4Validation(e){
 
 
 /*giving input fields values if they where entered before
-(in case page was refreshd)*/
-pname.value=localStorage.getItem('name');
-pemail.value=localStorage.getItem('email');
-pphone.value=localStorage.getItem('phone');
-pdate.value=localStorage.getItem('date');
+(in case page was refreshd) page2*/
+if(document.URL.includes('pages/page2.html')){
+    pname.value=localStorage.getItem('name');
+    pemail.value=localStorage.getItem('email');
+    pphone.value=localStorage.getItem('phone');
+    pdate.value=localStorage.getItem('date');
+};
+
+
